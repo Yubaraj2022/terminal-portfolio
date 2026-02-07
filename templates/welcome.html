@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="welcome-section">
+    <p><span class="prompt">user@home-server:~$</span> whoami</p>
+    <p id="typewriter-text" class="output">
+        Yubi: Aspiring Cybersecurity Professional. Currently tackling the Google Cert.
+    </p>
+    <p><span class="prompt">user@home-server:~$</span> cat background.txt</p>
+    <p class="output">
+        Transitioning from the Tech support and Technical Operations Engineering to Cybersecurity.
+        </br>
+        </br>
+        <strong>Name:</strong> Yubi<br>
+        <strong>Role:</strong> Experienced Tech Support and Technical Operations Engineer<br>
+        <strong>Focus:</strong> ITSM, Linux, Python, SQL, and Network Security.<br>
+        <strong>Current project:</strong> Building a Flask-based portfolio hosted on a home Ubuntu server to
+        master the fundamentals of web hosting and system administration.
+    </p>
+</div>
+{% endblock %}

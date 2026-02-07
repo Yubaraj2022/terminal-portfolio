@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yubi's Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="terminal-container">
+        <nav class="terminal-tabs">
+            <a href="/" class="tab active">~/welcome</a>
+            <a href="/projects" class="tab">~/projects</a>
+            <a href="/scribble" class="tab">~/my-scribbles</a>
+            <a href="/contact" class="tab">~/contact-me</a>
+        </nav>
+
+        <div class="terminal-body">
+            <div class="command-line">
+                <span class="prompt">user@home-server:~$</span>
+                <span class="command">cat {{ active_tab }}.md</span>
+            </div>
+
+            <div class="content-area">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div class="command-line">
+                <span class="prompt">user@home-server:~$</span><span class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            element.innerHTML = ""; // Clear existing text
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Example: Select the 'output' paragraph and trigger the effect
+        const output = document.querySelector('.output');
+        if (output) {
+            const text = output.innerText;
+            typeWriter(output, text, 30); // 30ms per character
+        }
+    </script>
+</body>
+
+</html>

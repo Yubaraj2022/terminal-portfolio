@@ -1,0 +1,94 @@
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #00ff41;
+    /* Classic Matrix Green */
+    --tab-bg: #1a1a1a;
+    --prompt-color: #5bc0de;
+}
+
+body {
+    background-color: #121212;
+    color: var(--text-color);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.terminal-container {
+    width: 90%;
+    max-width: 900px;
+    height: 600px;
+    background: var(--bg-color);
+    border: 1px solid #333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.terminal-tabs {
+    display: flex;
+    background: var(--tab-bg);
+    padding: 5px 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.tab {
+    padding: 8px 20px;
+    text-decoration: none;
+    color: #888;
+    font-size: 14px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab.active {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid #333;
+    border-bottom: none;
+}
+
+.terminal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.welcome-section {
+    line-height: 1.2;
+}
+
+.output {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #bebcbc;
+    /* A slightly softer white for the output text */
+}
+
+strong {
+    color: var(--text-color);
+    /* Neon green for the labels */
+}
+
+.prompt {
+    color: var(--prompt-color);
+}
+
+/* The blinking effect */
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background-color: var(--text-color);
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    from, to { background-color: transparent; }
+    50% { background-color: var(--text-color); }
+}
