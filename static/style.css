@@ -26,29 +26,32 @@ body {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 20px 50px rgba(223, 179, 179, 0.8);
 }
 
 .terminal-tabs {
     display: flex;
     background: var(--tab-bg);
     padding: 5px 10px 0;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #792525;
 }
 
 .tab {
     padding: 8px 20px;
     text-decoration: none;
-    color: #888;
+    color: #8f8b8b;
     font-size: 14px;
     border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .tab.active {
-    background: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid #333;
+    /* background: var(--bg-color); */
+    color: #09af35;
+    border: 1px solid #3d3c3c;
     border-bottom: none;
+    font-weight: bold;
 }
 
 .terminal-body {

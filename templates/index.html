@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yubi's Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <div class="terminal-container">
-        <nav class="terminal-tabs">
+        <nav class="terminald-tabs">
             <a href="/" class="tab active">~/welcome</a>
             <a href="/projects" class="tab">~/projects</a>
             <a href="/scribble" class="tab">~/my-scribbles</a>
@@ -19,7 +18,7 @@
 
         <div class="terminal-body">
             <div class="command-line">
-                <span class="prompt">user@home-server:~$</span>
+                <span class="prompt">Yubi@home-server:~$</span>
                 <span class="command">cat {{ active_tab }}.md</span>
             </div>
 
@@ -28,12 +27,13 @@
             </div>
 
             <div class="command-line">
-                <span class="prompt">user@home-server:~$</span><span class="cursor">█</span>
+                <br>
+                <span class="prompt">Yubi@home-server:~$</span><span class="cursor">█</span>
             </div>
         </div>
     </div>
     <script>
-        function typeWriter(element, text, speed) {
+        function typeEffect(element, text, speed) {
             let i = 0;
             element.innerHTML = ""; // Clear existing text
             function type() {
@@ -46,12 +46,31 @@
             type();
         }
 
-        // Example: Select the 'output' paragraph and trigger the effect
-        const output = document.querySelector('.output');
-        if (output) {
-            const text = output.innerText;
-            typeWriter(output, text, 30); // 30ms per character
+        // Example: Select the HTML ids and starts typing
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        async function startTyping() {
+            const allTypeText = document.querySelectorAll('#typewriter-text1, #typewriter-text2');
+            for (const element of allTypeText) {
+                if (element) {
+                    const text = element.innerText;
+                    typeEffect(element, text, 60);
+                    //wait for 30 secs before typing next 
+                    await sleep(30000);
+
+                }
+            }
         }
+        startTyping();
+
+        const tabs = document.querySelectorAll('.tab')
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                //remove the active class from all the tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                //add the 'active' class to the one you just clicked
+                this.classList.add('active');
+            });
+        })
     </script>
 </body>
 
