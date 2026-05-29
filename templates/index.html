@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Yubi's Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
     <div class="terminal-container">
         <nav class="terminald-tabs">
-            <a href="/" class="tab active">~/welcome</a>
-            <a href="/projects" class="tab">~/projects</a>
-            <a href="/scribble" class="tab">~/my-scribbles</a>
-            <a href="/contact" class="tab">~/contact-me</a>
+            <a href="/" class="tab {% if active_tab == 'welcome' %}active{% endif %}">~/welcome</a>
+            <a href="/projects" class="tab {% if active_tab == 'projects' %}active{% endif %}">~/projects</a>
+            <a href="/scribble" class="tab {% if active_tab == 'my-scribbles' %}active{% endif %}">~/my-scribbles</a>
+            <a href="/contact" class="tab {% if active_tab == 'contact-me' %}active{% endif %}">~/contact-me</a>
         </nav>
 
         <div class="terminal-body">
@@ -32,10 +30,11 @@
             </div>
         </div>
     </div>
+
     <script>
         function typeEffect(element, text, speed) {
             let i = 0;
-            element.innerHTML = ""; // Clear existing text
+            element.innerHTML = ""; 
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
@@ -46,32 +45,18 @@
             type();
         }
 
-        // Example: Select the HTML ids and starts typing
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         async function startTyping() {
             const allTypeText = document.querySelectorAll('#typewriter-text1, #typewriter-text2');
             for (const element of allTypeText) {
                 if (element) {
                     const text = element.innerText;
-                    typeEffect(element, text, 60);
-                    //wait for 30 secs before typing next 
-                    await sleep(30000);
-
+                    typeEffect(element, text, 40);
+                    await sleep(2000); 
                 }
             }
         }
-        startTyping();
-
-        const tabs = document.querySelectorAll('.tab')
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                //remove the active class from all the tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                //add the 'active' class to the one you just clicked
-                this.classList.add('active');
-            });
-        })
+        window.addEventListener('DOMContentLoaded', startTyping);
     </script>
 </body>
-
 </html>

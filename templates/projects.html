@@ -1,8 +1,16 @@
 {% extends 'index.html' %}
-
 {% block content %}
+<h2>📁 Executing tree ~/projects...</h2>
 
-<div class="projects">
-    <p> Here is a quick summary of my latest projects </p>
+<div class="tree-container">
+    <span class="tree-dir">.</span>
+    ├── <span class="tree-dir">web-apps/</span>
+    │ ├── <span class="tree-file">terminal-portfolio/</span> <span class="tree-comment"># This exact Flask codebase
+        running on localhost</span>
+    <!-- ├── <span class="tree-dir">scripts/</span>
+    │ └── <span class="tree-file">sleep-monitor.py</span> <span class="tree-comment"># Custom script monitoring server
+        lid sleep and thermal metrics</span> -->
 </div>
-{% endblock % }
+
+<p style="margin-top: 20px;">Sad, I've been acting to be too busy to do any cool projects! </p>
+{% endblock %}

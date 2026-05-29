@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="nano-container">
+    <div class="nano-header">
+        <span>GNU nano 8.0</span>
+        <span>File: ~/scribbles/{{ title }}.md</span>
+        <span>Modified</span>
+    </div>
+
+    <div class="nano-content">
+        {{ content | safe }}
+    </div>
+
+    <div class="nano-footer">
+        <div class="nano-shortcuts">
+            <div><span class="nano-key">^X</span><span class="nano-label"><a href="/scribble" style="color: #33ff33; text-decoration: none;">Exit Reader</a></span></div>
+            <div><span class="nano-key">^O</span><span class="nano-label">WriteOut</span></div>
+            <div><span class="nano-key">^R</span><span class="nano-label">Read File</span></div>
+            <div><span class="nano-key">^W</span><span class="nano-label">Where Is</span></div>
+            <div><span class="nano-key">^K</span><span class="nano-label">Cut</span></div>
+            <div><span class="nano-key">^U</span><span class="nano-label">Paste</span></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

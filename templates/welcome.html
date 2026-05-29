@@ -1,25 +1,35 @@
-{% extends "index.html" %}
-
+{% extends 'index.html' %}
 {% block content %}
-<div class="welcome-section">
-    <!-- <p><span class="prompt">user@home-server:~$</span> whoami</p> -->
-    <p id="typewriter-text1" class="output">
-        Welcome to my digital Portfolio. Let me Introduce myslef:
-    </p>
-    <p><span class="prompt">Yubi@home-server:~$</span> whoami</p>
-    <p class="output">
-        <strong>Name:</strong> Yubi<br>
-        <strong>Professional Summary:</strong> seasoned Tech Support and Technical Operations Engineer transitioning into
-        Cybersecurity<br>
-        <strong>Key Strength:</strong> IT Service Management, Technical Troubleshooting, Problem Solving, Process Engineering, Client Sucess, Customer service.<br>
-        <strong>Techinical Toolset:</strong> Linux, Python and SQL <br>
-        <strong>Current project:</strong> Building a Flask-based portfolio hosted on a home Ubuntu server.
-    </p>
-    <br> 
-    <br> 
-    <br>
-    <p id="typewriter-text2" class="output"> 
-        It's nice to meet you! Feel free to explore other tabs 
-    </p>
+<div class="ascii-banner">
+██╗   ██╗██╗   ██╗██████╗ ██╗
+╚██╗ Caution!, you're about to enter on Yubiland.
+ ╚██╗██╔╝██║   ██║██╔══██╗██║
+  ╚███╔╝ ██║   ██║██████╔╝██║
+   ██║   ██║   ██║██╔══██╗██║
+   ██║   ╚██████╔╝██████╔╝██║
+   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝
 </div>
+
+<div class="system-specs">
+    <div class="spec-line">
+        <span class="spec-label">Hostname:</span>
+        <span class="spec-value">yubi-laptop-server</span>
+    </div>
+    <div class="spec-line">
+        <span class="spec-label">OS:</span>
+        <span class="spec-value">Ubuntu 24.04 LTS</span>
+    </div>
+    <div class="spec-line">
+        <span class="spec-label">Framework:</span>
+        <span class="spec-value">Flask v3.0 + Mistune (Markdown engine)</span>
+    </div>
+    <div class="spec-line">
+        <span class="spec-label">Uptime:</span>
+        <span class="spec-value">since 99</span>
+    </div>
+</div>
+
+<p id="typewriter-text1">Welcome to my terminal portfolio! I run this lightweight app directly on my old laptop in my home closet. It serves as a testing ground and stroage for nonsensical things i like to scriblle now and then.</p>
+
+<p id="typewriter-text2">Use the  tabs above to query projects, browse raw scribbles, or ping me!</p>
 {% endblock %}

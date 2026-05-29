@@ -1,0 +1,20 @@
+# Python Virtual Environment
+protfolio/
+venv/
+env/
+ENV/
+
+# Python Complied Bytecode & Caches 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd 
+
+# Secrets, Configuration, and keys
+.env
+*.key
+*.pem
+
+# Operating system junk 
+.DS_Store
+Thumbs.db

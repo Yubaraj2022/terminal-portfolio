@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>📡 Executing diagnostic ping to contact registry...</h2>
+
+<div class="ping-response">
+PING yubi@example.com (198.51.100.12) 56(84) bytes of data.
+<span class="ping-success">64 bytes from mail.yubi.dev (198.51.100.12): icmp_seq=1 ttl=56 time=12.1 ms</span>
+<span class="ping-success">64 bytes from mail.yubi.dev (198.51.100.12): icmp_seq=2 ttl=56 time=11.8 ms</span>
+<span class="ping-success">64 bytes from mail.yubi.dev (198.51.100.12): icmp_seq=3 ttl=56 time=12.5 ms</span>
+
+--- yubi@example.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 11.821/12.143/12.502/0.279 ms
+</div>
+
+<h2>📋 Environment Export variables</h2>
+<ul class="env-vars">
+    <li>
+        <span class="env-key">export EMAIL=</span><span class="env-val">"yubi@example.com"</span>
+    </li>
+    <li>
+        <span class="env-key">export GITHUB=</span><span class="env-val">"<a href="https://github.com/Yubaraj2022" target="_blank">github.com/Yubaraj2022</a>"</span>
+    </li>
+    <li>
+        <span class="env-key">export LINKEDIN=</span><span class="env-val">"<a href="https://www.linkedin.com/in/yubaraj-rijal/" target="_blank">Yubi on LinkedIn</a>"</span>
+    </li>
+</ul>
+{% endblock %}

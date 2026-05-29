@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2>📂 List of directory: ~/scribbles/</h2>
+<p>Drop any Markdown (.md) blogs, notes, or creative writing pieces into your <code>scribbles/</code> folder to render them dynamically.</p>
+
+<table class="ls-table">
+    <tbody>
+        {% if files %}
+            {% for file in files %}
+            <tr>
+                <td class="ls-perms">-rw-r----r--</td>
+                <td class="ls-owner">yubi guest</td>
+                <td class="ls-size">1.2K</td>
+                <td class="ls-date">May 29 01:12</td>
+                <td class="ls-name">
+                    <a href="/scribble/{{ file }}">{{ file }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" style="color: #ff3333; text-align: center;">No Markdown files detected in scribbles/ directory.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
