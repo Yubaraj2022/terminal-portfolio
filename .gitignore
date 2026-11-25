@@ -1,20 +1,20 @@
-# Python Virtual Environment
-protfolio/
-venv/
-env/
-ENV/
-
-# Python Complied Bytecode & Caches 
-__pycache__/
-*.pyc
-*.pyo
-*.pyd 
-
-# Secrets, Configuration, and keys
+# Environment & secrets
 .env
-*.key
 *.pem
+*.key
 
-# Operating system junk 
+# Python & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+venv/
+.venv/
+mywenv/
+portfolio/
+
+# Docker & local editor/OS files
 .DS_Store
 Thumbs.db
+*.log
