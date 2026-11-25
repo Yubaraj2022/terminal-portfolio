@@ -1,307 +1,116 @@
-/* Monospace terminal portfolio styles */
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: #b0b0b0;
+  --line: #ffffff;
+  --line-dim: #444444;
+  --tab1: #5eead4;
+  --tab2: #f59e0b;
+  --flag: #5eead4;
+}
+
+* { box-sizing: border-box; }
+
 body {
-    background-color: #070707;
-    color: #33ff33;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
-.terminal-container {
-    width: 100%;
-    max-width: 900px;
-    background-color: #050505;
-    border: 1px solid #1a8c1a;
-    border-radius: 6px;
-    box-shadow: 0 0 20px rgba(51, 255, 51, 0.15);
-    overflow: hidden;
-    position: relative;
+a { color: var(--fg); }
+a:hover { color: var(--flag); }
+
+code {
+  border: 1px solid var(--line-dim);
+  padding: 1px 5px;
+  border-radius: 3px;
 }
 
-/* CRT Scanline Overlay Effect */
-.terminal-container::before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    aspect-ratio: auto;
-    background-size: 100% 4px, 6px 100%;
-    z-index: 20;
-    pointer-events: none;
+.cmd-flag { color: var(--flag); }
+
+.wrap {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 24px 18px 48px;
 }
 
-.terminald-tabs {
-    background-color: #111;
-    border-bottom: 1px solid #1a8c1a;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5px 10px 0 10px;
+.top, .foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
-.tab {
-    color: #1a8c1a;
-    text-decoration: none;
-    padding: 8px 16px;
-    margin-right: 5px;
-    border: 1px solid transparent;
-    border-bottom: none;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    font-weight: bold;
-    font-size: 0.9em;
-    transition: all 0.2s;
+.top { padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.foot { margin-top: 40px; padding-top: 12px; border-top: 1px solid var(--line-dim); font-size: 0.8rem; }
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-dim);
 }
 
-.tab:hover {
-    color: #33ff33;
-    background-color: #152515;
+.tab-btn {
+  padding: 6px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 2px 2px 0 var(--line-dim);
 }
 
-.tab.active {
-    color: #070707;
-    background-color: #33ff33;
-    border: 1px solid #33ff33;
-    border-bottom: none;
+.tab-manual { border-color: var(--tab1); box-shadow: 2px 2px 0 var(--tab1); }
+.tab-manual .cmd-flag { color: var(--tab1); }
+.tab-manual:hover, .tab-manual.active {
+  background: var(--tab1);
+  color: var(--bg);
+  border-color: var(--tab1);
+  box-shadow: 2px 2px 0 var(--fg);
 }
 
-.terminal-body {
-    padding: 20px;
-    position: relative;
-    z-index: 10;
+.tab-writing { border-color: var(--tab2); box-shadow: 2px 2px 0 var(--tab2); }
+.tab-writing .cmd-flag { color: var(--tab2); }
+.tab-writing:hover, .tab-writing.active {
+  background: var(--tab2);
+  color: var(--bg);
+  border-color: var(--tab2);
+  box-shadow: 2px 2px 0 var(--fg);
 }
 
-.command-line {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+.tab-manual:hover .cmd-flag,
+.tab-manual.active .cmd-flag,
+.tab-writing:hover .cmd-flag,
+.tab-writing.active .cmd-flag { color: var(--bg); }
+
+.prompt-line { margin: 18px 0 6px; font-weight: 600; }
+.prompt { margin-right: 6px; }
+
+section { margin-top: 22px; }
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--line-dim);
+  display: inline-block;
 }
 
-.prompt {
-    color: #1a8c1a;
-    margin-right: 10px;
-    font-weight: bold;
-}
+section p, section dl, .posts { margin: 0 0 0 20px; }
+dt { margin-top: 8px; font-weight: 600; }
+dd { margin: 2px 0 0 16px; color: var(--muted); }
+.posts { list-style: none; padding: 0; }
+.posts li { margin-bottom: 8px; }
+.back { margin: 12px 0 16px; font-size: 0.9rem; }
+.prose h1 { margin: 0 0 14px; font-size: 1.2rem; }
+.prose pre { border: 1px solid var(--line-dim); padding: 12px; border-radius: 4px; overflow-x: auto; }
+.muted { color: var(--muted); }
 
-.command {
-    color: #ffffff;
-}
-
-.content-area {
-    margin-top: 15px;
-    line-height: 1.6;
-    min-height: 300px;
-}
-
-/* Cursor Animation */
-.cursor {
-    display: inline-block;
-    background-color: #33ff33;
-    color: #33ff33;
-    width: 10px;
-    height: 18px;
-    animation: blink 1s step-start infinite;
-    vertical-align: middle;
-    margin-left: 5px;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
-/* Custom terminal components */
-.ascii-banner {
-    color: #33ff33;
-    white-space: pre;
-    font-size: 0.85em;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    overflow-x: auto;
-}
-
-.system-specs {
-    border: 1px dashed #1a8c1a;
-    padding: 15px;
-    margin-bottom: 25px;
-    background-color: #0c0c0c;
-}
-
-.spec-line {
-    display: flex;
-    justify-content: space-between;
-    max-width: 450px;
-    margin-bottom: 5px;
-}
-
-.spec-label {
-    color: #1a8c1a;
-}
-
-.spec-value {
-    color: #fff;
-}
-
-/* Tree visualization */
-.tree-container {
-    font-family: monospace;
-    white-space: pre;
-    line-height: 1.5;
-    background: #090909;
-    padding: 15px;
-    border-radius: 4px;
-    border: 1px solid #1a8c1a;
-}
-
-.tree-dir {
-    color: #33a3ff;
-    font-weight: bold;
-}
-
-.tree-file {
-    color: #33ff33;
-}
-
-.tree-comment {
-    color: #666;
-    font-style: italic;
-}
-
-/* Directory listing (ls -lh) */
-.ls-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.ls-table td {
-    padding: 6px 10px;
-    font-family: monospace;
-}
-
-.ls-perms {
-    color: #1a8c1a;
-}
-
-.ls-owner {
-    color: #8c8c8c;
-}
-
-.ls-size {
-    color: #e6db74;
-}
-
-.ls-date {
-    color: #66d9ef;
-}
-
-.ls-name a {
-    color: #33ff33;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.ls-name a:hover {
-    background-color: #33ff33;
-    color: #070707;
-}
-
-/* Nano simulated editor view */
-.nano-container {
-    border: 1px solid #1a8c1a;
-    border-radius: 4px;
-    background-color: #050505;
-}
-
-.nano-header {
-    background-color: #111;
-    color: #fff;
-    padding: 5px 10px;
-    border-bottom: 1px solid #1a8c1a;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9em;
-}
-
-.nano-content {
-    padding: 20px;
-    overflow-y: auto;
-    max-height: 500px;
-    color: #e0e0e0;
-}
-
-.nano-content h1, .nano-content h2, .nano-content h3 {
-    color: #33ff33;
-    border-bottom: 1px dashed #1a8c1a;
-    padding-bottom: 5px;
-}
-
-.nano-content pre {
-    background-color: #0f0f0f;
-    border: 1px solid #1a8c1a;
-    padding: 10px;
-    overflow-x: auto;
-    color: #fff;
-}
-
-.nano-footer {
-    background-color: #111;
-    border-top: 1px solid #1a8c1a;
-    padding: 10px;
-    font-size: 0.85em;
-}
-
-.nano-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 5px;
-}
-
-.nano-key {
-    background-color: #33ff33;
-    color: #070707;
-    padding: 1px 5px;
-    font-weight: bold;
-    border-radius: 2px;
-}
-
-.nano-label {
-    color: #1a8c1a;
-    margin-left: 5px;
-}
-
-/* Ping Diagnostics */
-.ping-response {
-    background-color: #0c0c0c;
-    border: 1px solid #1a8c1a;
-    padding: 15px;
-    font-family: monospace;
-    white-space: pre-wrap;
-    line-height: 1.4;
-    margin-bottom: 25px;
-}
-
-.ping-success {
-    color: #33ff33;
-}
-
-.env-vars {
-    list-style-type: none;
-    padding: 0;
-}
-
-.env-vars li {
-    margin-bottom: 8px;
-}
-
-.env-key {
-    color: #1a8c1a;
-}
-
-.env-val a {
-    color: #33ff33;
-    text-decoration: underline;
+@media (max-width: 600px) {
+  section p, section dl, .posts { margin-left: 10px; }
 }

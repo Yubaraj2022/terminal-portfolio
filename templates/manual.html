@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}YUBARAJ(1) — Manual{% endblock %}
+
+{% block content %}
+  <section>
+    <h2>NAME</h2>
+    <p>yubaraj — developer, home-server operator, and writer</p>
+  </section>
+
+  <section>
+    <h2>SYNOPSIS</h2>
+    <p><code>yubaraj</code> [<code>manual</code> | <code>writing</code>]</p>
+  </section>
+
+  <section>
+    <h2>DESCRIPTION</h2>
+    <p>
+      Minimalist manual and writing archive hosted on a home Linux server behind Docker Compose and Cloudflare Tunnel.
+    </p>
+  </section>
+
+  <section>
+    <h2>PROJECTS</h2>
+    <dl>
+      <dt>terminal-portfolio</dt>
+      <dd>Flask + Mistune two-tab manual and Markdown writing app.</dd>
+      <dt>ibuyserver</dt>
+      <dd>Dockerized home server running Gunicorn, Nginx, and cloudflared.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>LINKS</h2>
+    <p>
+      <a href="{{ url_for('writing') }}">writing</a> ·
+      <a href="https://github.com/Yubaraj2022" target="_blank" rel="noopener noreferrer">github</a> ·
+      <a href="https://www.linkedin.com/in/yubaraj-rijal/" target="_blank" rel="noopener noreferrer">linkedin</a>
+    </p>
+  </section>
+{% endblock %}

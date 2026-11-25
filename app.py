@@ -1,53 +1,67 @@
 import os
+import re
 from flask import Flask, render_template, abort
 import mistune
 
 app = Flask(__name__)
 
-# Locate the scribbles directory relative to this app.py file
-SCRIBBLES_DIR = os.path.join(os.path.dirname(__file__), 'scribbles')
+SCRIBBLES_DIR = os.path.join(os.path.dirname(__file__), "scribbles")
+os.makedirs(SCRIBBLES_DIR, exist_ok=True)
+SLUG_RE = re.compile(r"^[A-Za-z0-9_-]+$")
 
-# Ensure the scribbles directory exists automatically
-if not os.path.exists(SCRIBBLES_DIR):
-    os.makedirs(SCRIBBLES_DIR)
 
-@app.route('/')
-def index():
-    return render_template('welcome.html', active_tab="welcome")
+def load_post(slug):
+    if not SLUG_RE.fullmatch(slug):
+        return None
+    path = os.path.join(SCRIBBLES_DIR, f"{slug}.md")
+    if not os.path.isfile(path):
+        return None
+    with open(path, "r", encoding="utf-8") as f:
+        lines = f.read().splitlines()
 
-@app.route('/projects')
-def projects():
-    return render_template('projects.html', active_tab="projects")
+    title = slug.replace("-", " ").title()
+    body_lines = lines
+    if lines and re.match(r"^#\s+", lines[0]):
+        title = re.sub(r"^#\s+", "", lines[0]).strip()
+        body_lines = lines[1:]
 
-@app.route('/scribble')
-def scribble():
-    files = []
-    if os.path.exists(SCRIBBLES_DIR):
-        # Fetch clean file names without the .md extension to use in URLs
-        files = [f.replace('.md', '') for f in os.listdir(SCRIBBLES_DIR) if f.endswith('.md')]
-    return render_template('scribble.html', active_tab="my-scribbles", files=files)
+    return title, mistune.html("\n".join(body_lines).lstrip())
 
-@app.route('/scribble/<filename>')
-def view_scribble(filename):
-    safe_filename = f"{filename}.md"
-    file_path = os.path.join(SCRIBBLES_DIR, safe_filename)
-    
-    # Standard 404 handler if someone types a non-existent file name in the URL
-    if not os.path.exists(file_path):
+
+@app.route("/")
+def manual():
+    return render_template("manual.html", active_tab="manual", cmd="man yubaraj")
+
+
+@app.route("/writing")
+def writing():
+    slugs = sorted(
+        os.path.splitext(name)[0]
+        for name in os.listdir(SCRIBBLES_DIR)
+        if name.endswith(".md") and os.path.isfile(os.path.join(SCRIBBLES_DIR, name))
+    )
+    posts = []
+    for slug in slugs:
+        loaded = load_post(slug)
+        if loaded:
+            posts.append({"slug": slug, "title": loaded[0]})
+    return render_template("writing.html", active_tab="writing", cmd="ls scribbles/", posts=posts)
+
+
+@app.route("/writing/<slug>")
+def post(slug):
+    loaded = load_post(slug)
+    if not loaded:
         abort(404)
-        
-    with open(file_path, 'r', encoding='utf-8') as f:
-        markdown_content = f.read()
-        
-    # Render markdown text into clean HTML layout blocks
-    html_content = mistune.html(markdown_content)
-    
-    return render_template('view_scribble.html', active_tab="my-scribbles", content=html_content, title=filename)
+    title, html = loaded
+    return render_template(
+        "post.html",
+        active_tab="writing",
+        cmd=f"cat scribbles/{slug}.md",
+        title=title,
+        content=html,
+    )
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html', active_tab="contact-me")
 
-if __name__ == '__main__':
-    # Listens on port 5000 across your entire local area home network
-    app.run(debug=True, host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(debug=False, host="0.0.0.0", port=5000)

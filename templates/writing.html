@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}YUBARAJ(1) — Writing{% endblock %}
+
+{% block content %}
+  <section>
+    <h2>SCRIBBLES</h2>
+    {% if posts %}
+      <ul class="posts">
+        {% for item in posts %}
+          <li><a href="{{ url_for('post', slug=item.slug) }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">No entries in scribbles/ yet.</p>
+    {% endif %}
+  </section>
+{% endblock %}

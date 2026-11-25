@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — Writing{% endblock %}
+
+{% block content %}
+  <p class="back"><a href="{{ url_for('writing') }}">← writing</a></p>
+  <article class="prose">
+    <h1>{{ title }}</h1>
+    {{ content | safe }}
+  </article>
+{% endblock %}

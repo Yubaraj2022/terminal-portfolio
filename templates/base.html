@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}YUBARAJ(1){% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <span>YUBARAJ(1)</span>
+      <span>yubalife.com</span>
+    </header>
+
+    <nav class="tabs" aria-label="Sections">
+      <a href="{{ url_for('manual') }}" class="tab-btn tab-manual {% if active_tab == 'manual' %}active{% endif %}">
+        <span class="cmd-flag">[1]</span> manual
+      </a>
+      <a href="{{ url_for('writing') }}" class="tab-btn tab-writing {% if active_tab == 'writing' %}active{% endif %}">
+        <span class="cmd-flag">[2]</span> writing
+      </a>
+    </nav>
+
+    <p class="prompt-line">
+      <span class="prompt">$</span>
+      <span class="cmd-name">{{ cmd.split(' ')[0] }}</span>
+      {% if ' ' in cmd %}<span class="cmd-flag">{{ cmd.split(' ', 1)[1] }}</span>{% endif %}
+    </p>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="foot">
+      <span>keys: <span class="cmd-flag">[1]</span> manual · <span class="cmd-flag">[2]</span> writing</span>
+      <span>ibuyserver</span>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("keydown", (e) => {
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
+      if (e.key === "1") location.href = "{{ url_for('manual') }}";
+      if (e.key === "2") location.href = "{{ url_for('writing') }}";
+    });
+  </script>
+</body>
+</html>
